@@ -22,7 +22,7 @@ public class UserController {
         this.usersRepository = usersRepository;
     }
 
-    @GetMapping
+    @GetMapping (produces = "application/json")
     public List<Users> getUsers() {
         return usersRepository.findAll();
     }
