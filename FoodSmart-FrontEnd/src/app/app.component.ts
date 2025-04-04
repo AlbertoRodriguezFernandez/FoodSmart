@@ -1,12 +1,20 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { SaludoService } from './saludo.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  standalone: true,
+  imports: [],
+  template: `<h1>{{ saludo }}</h1>`
 })
 export class AppComponent {
-  title = 'FoodSmart-FrontEnd';
+  saludo = '';
+
+  constructor(private saludoService: SaludoService) {}
+
+  ngOnInit() {
+    this.saludoService.obtenerSaludo().subscribe(res => {
+      this.saludo = res;
+    });
+  }
 }
