@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/api/users")
 @CrossOrigin(origins = "http://localhost:4200") // Para permitir peticiones desde Angular
 public class UserController {
 
@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<Users> obtenerUsuarios() {
+    public List<Users> getUsers() {
         return usersRepository.findAll();
     }
 }
