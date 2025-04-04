@@ -1,3 +1,5 @@
 /home/laura/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/FoodSmartBackendApplication.java
 /home/laura/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/controllers/DataController.java
 /home/laura/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/controllers/UserController.java
+/home/laura/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/model/Users.java
+/home/laura/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/repository/UsersRepository.java
