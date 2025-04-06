@@ -1,3 +1,6 @@
+// Clase que representa la entidad de la BD
+// Esta clase se utiliza para mapear la tabla "users" de la base de datos a un objeto Java.
+
 package com.FoodSmart.FoodSmart_Backend.model;
 
 import jakarta.persistence.*;

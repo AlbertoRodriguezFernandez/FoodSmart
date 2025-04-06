@@ -1,3 +1,7 @@
+// CLASE PRINCIPAL DEL PROYECTO SPRING BOOT
+// Esta clase es la entrada principal de la aplicación Spring Boot.
+// Se encarga de iniciar el contexto de la aplicación y cargar la configuración necesaria.
+
 package com.FoodSmart.FoodSmart_Backend;
 
 import org.springframework.boot.SpringApplication;

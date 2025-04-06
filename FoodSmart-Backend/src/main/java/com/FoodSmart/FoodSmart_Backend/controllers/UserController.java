@@ -1,3 +1,6 @@
+// Responsable de manejar solicitudes HTTP del frontend relacionadas con los usuarios.
+// En este caso, se utiliza para manejar una solicitud GET en la ruta "/api/users".
+
 package com.FoodSmart.FoodSmart_Backend.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
