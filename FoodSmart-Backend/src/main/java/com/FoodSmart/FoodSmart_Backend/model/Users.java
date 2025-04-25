@@ -13,28 +13,28 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // Puedes usar otra clave primaria si es necesario
     
-    private String correo;
-    private String nombre;
-    private String contraseña;
+    private String name;
+    private String mail;
+    private String password;
 
     public Users() {}
 
-    public Users(String correo, String nombre, String contraseña) {
-        this.correo = correo;
-        this.nombre = nombre;
-        this.contraseña = contraseña;
+    public Users(String mail, String name, String password) {
+        this.mail = mail;
+        this.name = name;
+        this.password = password;
     }
 
     // Getters y Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public String getCorreo() { return correo; }
-    public void setCorreo(String correo) { this.correo = correo; }
+    public String getMail() { return mail; }
+    public void setMail(String mail) { this.mail = mail; }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public String getContraseña() { return contraseña; }
-    public void setContraseña(String contraseña) { this.contraseña = contraseña; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 }

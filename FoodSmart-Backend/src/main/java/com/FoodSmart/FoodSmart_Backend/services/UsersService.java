@@ -1,6 +1,7 @@
 // Clases que implementan la lógica de negocio
 // Esta clase se encarga de manejar la lógica de negocio del sistema.
 
+/*
 package com.FoodSmart.FoodSmart_Backend.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,3 +33,4 @@ public class UsersService {
         usersRepository.deleteById(id);
     }
 }
+*/
