@@ -12,7 +12,6 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // Puedes usar otra clave primaria si es necesario
-    
     private String name;
     private String mail;
     private String password;
