@@ -1,5 +1,9 @@
-/home/antonio/Documentos/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/FoodSmartBackendApplication.java
 /home/antonio/Documentos/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/controllers/UserController.java
-/home/antonio/Documentos/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/model/Users.java
+/home/antonio/Documentos/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/services/ProductService.java
+/home/antonio/Documentos/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/FoodSmartBackendApplication.java
 /home/antonio/Documentos/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/repository/UsersRepository.java
 /home/antonio/Documentos/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/services/UsersService.java
+/home/antonio/Documentos/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/model/Products.java
+/home/antonio/Documentos/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/model/Users.java
+/home/antonio/Documentos/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/controllers/ProductController.java
+/home/antonio/Documentos/ISI/FoodSmart/FoodSmart-Backend/src/main/java/com/FoodSmart/FoodSmart_Backend/repository/ProductsRepository.java
