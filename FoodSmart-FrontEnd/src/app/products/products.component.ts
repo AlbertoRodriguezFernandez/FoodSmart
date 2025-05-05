@@ -43,7 +43,8 @@ export class ProductsComponent implements OnInit {  // Implementa OnInit correct
   }
 }*/
 
-/* VERSION BUENA
+/*
+// VERSION API
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -95,7 +96,7 @@ export class ProductsComponent implements OnInit {
 }
 */
 
-
+// VERSION WEB SCRAPING
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
