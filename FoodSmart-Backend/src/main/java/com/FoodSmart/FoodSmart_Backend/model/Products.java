@@ -8,6 +8,9 @@ public class Products {
 
     private String id;
 
+    @JsonProperty("price")
+    private String price;
+
     @JsonProperty("product_name")
     private String product_name;
 
@@ -16,9 +19,16 @@ public class Products {
 
     public Products() {} // Constructor vacío requerido para deserialización
     
-    public Products(String productName, String imageUrl){
+    public Products(String productName, String imageUrl, String price){
         this.product_name = productName;
         this.image_url = imageUrl;
+        this.price = price;
+    }
+
+    public Products(String productName, String price){
+        this.product_name = productName;
+        this.price = price;
+        this.image_url = ""; 
     }
     
     // Getters y setters
@@ -30,6 +40,9 @@ public class Products {
 
     public String getImageUrl() {return image_url;}
     public void setImageUrl(String imageUrl){this.image_url = imageUrl;}
+
+    public String getPrice() {return price;}
+    public void setPrice(String price){this.price = price;}
 }
 
 //Define la estructura de datos que se maneja y devuelve al frontend. 

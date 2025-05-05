@@ -1,7 +1,4 @@
 com/FoodSmart/FoodSmart_Backend/repository/UsersRepository.class
-com/FoodSmart/FoodSmart_Backend/model/Products.class
-com/FoodSmart/FoodSmart_Backend/controllers/ProductController.class
-com/FoodSmart/FoodSmart_Backend/services/ProductService.class
 com/FoodSmart/FoodSmart_Backend/FoodSmartBackendApplication.class
 com/FoodSmart/FoodSmart_Backend/model/Users.class
 com/FoodSmart/FoodSmart_Backend/controllers/UserController.class

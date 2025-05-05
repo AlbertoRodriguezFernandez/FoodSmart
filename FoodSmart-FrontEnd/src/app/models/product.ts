@@ -42,5 +42,6 @@ export enum NutritionalInformation{
 export interface ProductsModel {
     product_name: string; // Cambiado de product_name
     image_url: string;    // Cambiado de image_url
+    price: string;     // Cambiado de price
     // Otros campos...
   }

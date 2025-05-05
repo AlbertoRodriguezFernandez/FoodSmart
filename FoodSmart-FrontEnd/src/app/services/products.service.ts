@@ -36,18 +36,24 @@ import { Observable } from 'rxjs';
 export interface Product {
   productName: string;
   imageUrl: string;
+  price: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:8080/api/products';
+  
+  //private apiUrl = 'http://localhost:8080/api/products';
+  private apiUrl = 'http://localhost:8080/api/scraper';
+
 
   constructor(private http: HttpClient) {}
 
   searchProducts(query: string): Observable<Product[]> {
     const params = new HttpParams().set('q', query);
     return this.http.get<Product[]>(`${this.apiUrl}/search`, { params });
+
   }
+
 }

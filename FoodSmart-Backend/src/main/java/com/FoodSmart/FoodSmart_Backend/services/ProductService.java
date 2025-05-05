@@ -1,4 +1,3 @@
-
 package com.FoodSmart.FoodSmart_Backend.services;
 
 import org.springframework.stereotype.Service;
@@ -33,6 +32,7 @@ public class ProductService {
                 .toList();
     }
 }
+
 
 
 //Contiene la lógica de negocio para buscar productos. 
