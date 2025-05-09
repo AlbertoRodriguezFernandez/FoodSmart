@@ -1,6 +1,6 @@
 <!--
-  Este es el archivo HTML para la vista de productos.
-  Aquí se muestra una lista de productos obtenidos desde la API.
+  API INICIAL
+
 <p>Lista de productos</p>
 <h2>Productos</h2>
 
@@ -24,6 +24,10 @@
   </div>
 </div>-->
 
+
+<!--
+ WEB SCRAPPING INICIAL
+
 <div class="search-container">
   <h1>Buscador de Productos</h1>
   <p>Encuentra información nutricional de cualquier alimento</p>
@@ -44,8 +48,10 @@
     
     <div class="products-grid">
       <div *ngFor="let product of products" class="product-card">
-        <img [src]="product.image_url || 'assets/no-image.png'" alt="{{ product.product_name }}">
+        <img [src]="product.image_url" alt="No se ha podido cargar la foto">
         <h3>{{ product.product_name || 'Producto sin nombre' }}</h3>
+        // Añadimos el precio aquí
+        <p class="product-price" *ngIf="product.price">{{ product.price }}</p>
       </div>
     </div>
   </div>
@@ -53,5 +59,58 @@
   <div *ngIf="!loading && products.length === 0 && query" class="no-results">
     <p>No se encontraron productos para "{{ query }}".</p>
     <button (click)="search('')">Ver productos populares</button>
+  </div>
+</div>
+-->
+
+<div class="main-container">
+  <div class="search-container">
+    <div class="header-section">
+      <h1>FoodSmart</h1>
+      <p class="subtitle">Encuentra información nutricional de cualquier alimento</p>
+    </div>
+    
+    <div class="search-bar">
+      <input [(ngModel)]="query" 
+             placeholder="Buscar productos (ej: arroz, leche, galletas)..." 
+             (keyup.enter)="search()"/>
+      <button (click)="search()">
+        <i class="fa fa-search"></i> Buscar
+      </button>
+    </div>
+  </div>
+  
+  <div *ngIf="loading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Buscando productos...</p>
+  </div>
+
+  <div *ngIf="!loading && products.length > 0" class="results-container">
+    <h2 class="results-title">
+      <span *ngIf="query">Resultados para "{{ query }}"</span>
+      <span *ngIf="!query">Productos populares</span>
+    </h2>
+    
+    <div class="products-grid">
+      <div *ngFor="let product of products" class="product-card">
+        <div class="product-image-container">
+          <img [src]="product.image_url || 'assets/no-image.png'" 
+               onerror="this.src='assets/no-image.png'"
+               alt="{{ product.product_name || 'Producto' }}">
+        </div>
+        <div class="product-info">
+          <h3>{{ product.product_name || 'Producto sin nombre' }}</h3>
+          <p class="product-price" *ngIf="product.price">{{ product.price }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && products.length === 0 && query" class="no-results">
+    <div class="no-results-content">
+      <i class="fa fa-search" style="font-size: 3rem; opacity: 0.3;"></i>
+      <p>No se encontraron productos para "{{ query }}".</p>
+      <button (click)="search('')" class="secondary-button">Ver productos populares</button>
+    </div>
   </div>
 </div>

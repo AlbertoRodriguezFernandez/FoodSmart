@@ -134,7 +134,7 @@ export class ProductsComponent implements OnInit {
         console.log('Datos recibidos del backend:', data);
         this.products = data.map(item => ({
           product_name: item.productName,
-          image_url: item.imageUrl,
+          image_url: item.imageUrl || '',
           price: item.price || ''
         }));
         this.loading = false;
