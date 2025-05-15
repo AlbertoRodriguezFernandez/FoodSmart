@@ -1,3 +1,32 @@
-<app-users></app-users>
-<app-products></app-products>
+<header *ngIf="authService.isAuthenticated()" class="app-header">
+  <div class="header-container">
+    <div class="logo">
+      <a routerLink="/products">
+        <span class="logo-icon">🥗</span>
+        <span class="logo-text">FoodSmart</span>
+      </a>
+    </div>
+    
+    <nav class="main-nav">
+      <ul>
+        <li><a routerLink="/products" routerLinkActive="active">Productos</a></li>
+        <li><a routerLink="/favorites" routerLinkActive="active">Favoritos</a></li>
+      </ul>
+    </nav>
+    
+    <div class="user-menu">
+      <span class="user-name">{{ getUserName() }}</span>
+      <button class="logout-button" (click)="logout()">Cerrar sesión</button>
+    </div>
+  </div>
+</header>
 
+<main [ngClass]="{'with-header': authService.isAuthenticated()}">
+  <router-outlet></router-outlet>
+</main>
+
+<footer *ngIf="authService.isAuthenticated()" class="app-footer">
+  <div class="footer-container">
+    <p>© 2023 FoodSmart - Tu asistente nutricional inteligente</p>
+  </div>
+</footer>

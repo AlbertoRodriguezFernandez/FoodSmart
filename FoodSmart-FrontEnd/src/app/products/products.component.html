@@ -97,10 +97,36 @@
           <img [src]="product.image_url || 'assets/no-image.png'" 
                onerror="this.src='assets/no-image.png'"
                alt="{{ product.product_name || 'Producto' }}">
+          
+          <!-- Badge para Nutriscore si está disponible -->
+          <span *ngIf="product.nutriscoreGrade" class="nutriscore-badge nutriscore-{{ product.nutriscoreGrade.toLowerCase() }}">
+            Nutriscore {{ product.nutriscoreGrade.toUpperCase() }}
+          </span>
         </div>
+        
         <div class="product-info">
           <h3>{{ product.product_name || 'Producto sin nombre' }}</h3>
-          <p class="product-price" *ngIf="product.price">{{ product.price }}</p>
+          
+          <!-- Marca y cantidad -->
+          <p class="product-brand" *ngIf="product.brands">
+            {{ product.brands }} 
+            <span *ngIf="product.quantity">- {{ product.quantity }}</span>
+          </p>
+          
+          <!-- Precio con indicador de fuente -->
+          <p class="product-price" *ngIf="product.price">
+            {{ product.price }}
+            <span *ngIf="product.source === 'integrated'" class="price-source-badge">Mercastic</span>
+          </p>
+          
+          <p class="no-price-message" *ngIf="!product.price">Precio no disponible</p>
+          
+          <!-- Botón para ver más información nutricional -->
+          <button *ngIf="hasNutritionalInfo(product)" 
+                  class="info-button"
+                  (click)="showProductDetails(product)">
+            <i class="fa fa-info-circle"></i> Ver información nutricional
+          </button>
         </div>
       </div>
     </div>

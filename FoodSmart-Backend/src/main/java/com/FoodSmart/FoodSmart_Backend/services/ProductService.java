@@ -7,29 +7,58 @@ import com.FoodSmart.FoodSmart_Backend.model.Products;
 
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.logging.Logger;
 
 @Service
 public class ProductService {
 
+    private static final Logger logger = Logger.getLogger(ProductService.class.getName());
     private final RestTemplate restTemplate = new RestTemplate();
 
     public List<Products> searchProducts(String query) {
+        // Construir URL con más parámetros para obtener datos más completos
         String url = UriComponentsBuilder
             .fromUriString("https://world.openfoodfacts.org/cgi/search.pl")
             .queryParam("search_terms", query)
             .queryParam("json", "true")
+            .queryParam("page_size", "24")
             .toUriString();
-        Map<String, Object> response = restTemplate.getForObject(url, Map.class);
+            
+        Map<String, Object> response;
+        try {
+            response = restTemplate.getForObject(url, Map.class);
+        } catch (Exception e) {
+            logger.warning("Error al conectar con OpenFoodFacts: " + e.getMessage());
+            return new ArrayList<>();
+        }
 
         List<Map<String, Object>> rawProducts = (List<Map<String, Object>>) response.get("products");
+        List<Products> productsList = new ArrayList<>();
 
-        return rawProducts.stream()
-                .map(p -> {
-                    String name = (String) p.get("product_name");
-                    String image = (String) p.get("image_url");
-                    return new Products(name, image);
-                })
-                .toList();
+        for (Map<String, Object> p : rawProducts) {
+            Products product = new Products();
+            
+            // Información básica
+            product.setProductName((String) p.get("product_name"));
+            product.setImageUrl((String) p.get("image_url"));
+            product.setSource("openFoodFacts");
+            
+            // Información nutricional
+            product.setNutriscoreGrade((String) p.get("nutriscore_grade"));
+            product.setIngredientsText((String) p.get("ingredients_text"));
+            product.setBrands((String) p.get("brands"));
+            product.setQuantity((String) p.get("quantity"));
+            
+            // Nutrientes (si están disponibles)
+            if (p.containsKey("nutriments")) {
+                product.setNutriments((Map<String, Object>) p.get("nutriments"));
+            }
+            
+            productsList.add(product);
+        }
+        
+        return productsList;
     }
 }
 

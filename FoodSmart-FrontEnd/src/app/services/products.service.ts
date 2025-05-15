@@ -28,7 +28,7 @@ export class ProductsService {
   }
 }*/
 
-
+/* VERSION WEB SCRAPPING
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -56,4 +56,32 @@ export class ProductService {
 
   }
 
+}
+*/
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductService {
+  
+  private apiUrl = 'http://localhost:8080/api';
+
+  constructor(private http: HttpClient) {}
+
+  searchProducts(query: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/integrated/search?q=${query}`);
+  }
+
+  // Mantener los métodos existentes para buscar solo en Open Food Facts o solo en Mercastic
+  searchOpenFoodFactsProducts(query: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/products/search?q=${query}`);
+  }
+  
+  searchMercastic(query: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/scraper/search?q=${query}`);
+  }
 }

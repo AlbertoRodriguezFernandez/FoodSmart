@@ -1,7 +1,3 @@
-// Clases que implementan la lógica de negocio
-// Esta clase se encarga de manejar la lógica de negocio del sistema.
-
-
 package com.FoodSmart.FoodSmart_Backend.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +27,21 @@ public class UsersService {
 
     public void deleteUser(Long id) {
         usersRepository.deleteById(id);
+    }
+    
+    /**
+     * Autenticar un usuario por correo y contraseña
+     * @param mail Correo del usuario
+     * @param password Contraseña del usuario
+     * @return Usuario autenticado o null si no se encuentra o la contraseña es incorrecta
+     */
+    public Users authenticate(String mail, String password) {
+        List<Users> users = usersRepository.findAll();
+        
+        // Buscar un usuario con el correo y contraseña proporcionados
+        return users.stream()
+            .filter(user -> user.getMail().equals(mail) && user.getPassword().equals(password))
+            .findFirst()
+            .orElse(null);
     }
 }

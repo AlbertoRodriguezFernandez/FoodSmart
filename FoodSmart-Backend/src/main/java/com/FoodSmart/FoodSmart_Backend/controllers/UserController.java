@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Map;       // Añadir esta importación
+import java.util.HashMap;   // Añadir esta importación
 
 @RestController
 @RequestMapping("/api/users")
@@ -65,6 +67,32 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Map<String, String> credentials) {
+        String mail = credentials.get("mail");
+        String password = credentials.get("password");
+        
+        if (mail == null || password == null) {
+            return ResponseEntity.badRequest().body("Email y contraseña son requeridos");
+        }
+        
+        Users user = usersService.authenticate(mail, password);
+        
+        if (user != null) {
+            // Crear un mapa para devolver solo información relevante (sin contraseña)
+            Map<String, Object> response = new HashMap<>();
+            response.put("id", user.getId());
+            response.put("name", user.getName());
+            response.put("mail", user.getMail());
+            response.put("message", "Inicio de sesión exitoso");
+            
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.status(401).body("Credenciales inválidas");
+        }
+    }
+
 }
 
 

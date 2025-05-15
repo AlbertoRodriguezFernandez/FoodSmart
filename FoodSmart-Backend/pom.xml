@@ -79,6 +79,13 @@
             <version>1.20.1</version>
         </dependency>
 
+        <!-- Apache Commons Text para comparación de texto -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.10.0</version>
+        </dependency>
+
     </dependencies>
     
     <build>

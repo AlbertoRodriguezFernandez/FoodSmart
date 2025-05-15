@@ -189,6 +189,8 @@
   font-weight: 700;
   color: #43a047;
   margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
 }
 
 /* No resultados */
@@ -223,6 +225,75 @@
 
 .secondary-button:hover {
   background-color: #d5d5d5;
+}
+
+/* Estilos para badges de Nutriscore */
+.nutriscore-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.nutriscore-a { background-color: #038141; }
+.nutriscore-b { background-color: #85bb2f; }
+.nutriscore-c { background-color: #fecb02; }
+.nutriscore-d { background-color: #ee8100; }
+.nutriscore-e { background-color: #e63e11; }
+.nutriscore-unknown { background-color: #777; }
+
+/* Estilo para información de marca */
+.product-brand {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.2rem 0 0.5rem;
+}
+
+/* Badge para mostrar la fuente del precio */
+.price-source-badge {
+  font-size: 0.7rem;
+  background-color: #43a047;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* Botón para ver información nutricional */
+.info-button {
+  margin-top: 0.8rem;
+  padding: 8px 12px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.info-button:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-1px);
+}
+
+.info-button i {
+  color: #43a047;
+}
+
+.no-price-message {
+  color: #999;
+  font-style: italic;
+  font-size: 0.9rem;
 }
 
 /* Animaciones */
