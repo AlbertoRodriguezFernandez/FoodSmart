@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa, #e8ecf1);
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 450px;
+  overflow: hidden;
+}
+
+.brand {
+  background: linear-gradient(135deg, #43a047, #66bb6a);
+  padding: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.brand p {
+  margin: 5px 0 0;
+  opacity: 0.9;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+form {
+  padding: 2rem;
+}
+
+h2 {
+  margin: 0 0 1.5rem;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #43a047;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(67, 160, 71, 0.1);
+}
+
+.error-message {
+  color: #e53935;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  background-color: #43a047;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+button:hover {
+  background-color: #388e3c;
+}
+
+button[disabled] {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+}
+
+.form-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.form-footer a {
+  color: #43a047;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.form-footer a:hover {
+  text-decoration: underline;
+}
+
+.alert {
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.alert.error {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+@media (max-width: 576px) {
+  .login-card {
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .brand {
+    padding: 1.5rem;
+  }
+  
+  form {
+    padding: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+  }
+}

@@ -1,0 +1,78 @@
+<div class="login-container">
+    <div class="login-card">
+      <div class="brand">
+        <h1>FoodSmart</h1>
+        <p>Tu comparador de productos de confianza</p>
+      </div>
+  
+      <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+        <h2>Crear cuenta</h2>
+        
+        <div class="alert error" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+        
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name"
+            [(ngModel)]="user.name" 
+            required 
+            placeholder="Tu nombre"
+            #name="ngModel">
+          <div class="error-message" *ngIf="name.invalid && (name.dirty || name.touched)">
+            <span *ngIf="name.errors?.['required']">El nombre es obligatorio</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email"
+            [(ngModel)]="user.mail" 
+            required 
+            email
+            placeholder="ejemplo@correo.com"
+            #email="ngModel">
+          <div class="error-message" *ngIf="email.invalid && (email.dirty || email.touched)">
+            <span *ngIf="email.errors?.['required']">El correo es obligatorio</span>
+            <span *ngIf="email.errors?.['email']">Ingrese un correo válido</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password"
+            [(ngModel)]="user.password" 
+            required
+            minlength="6"
+            placeholder="Contraseña"
+            #password="ngModel">
+          <div class="error-message" *ngIf="password.invalid && (password.dirty || password.touched)">
+            <span *ngIf="password.errors?.['required']">La contraseña es obligatoria</span>
+            <span *ngIf="password.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres</span>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button 
+            type="submit" 
+            [disabled]="registerForm.invalid || loading">
+            <span *ngIf="!loading">Registrarse</span>
+            <span *ngIf="loading">Procesando...</span>
+          </button>
+        </div>
+        
+        <div class="form-footer">
+          <p>¿Ya tienes una cuenta? <a routerLink="/login">Inicia sesión aquí</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
