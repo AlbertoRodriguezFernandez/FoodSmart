@@ -1,68 +1,3 @@
-<!--
-  API INICIAL
-
-<p>Lista de productos</p>
-<h2>Productos</h2>
-
-<div *ngIf="loading">Cargando productos...</div>
-
-<div *ngIf="error">
-  Error al cargar productos. Por favor, inténtalo de nuevo.
-</div>
-
-<div *ngIf="!loading && !error">
-  <div *ngIf="products.length === 0">
-    No se encontraron productos.
-  </div>
-  
-  <div class="products-grid">
-    <div *ngFor="let product of products" class="product-card">
-      <img [src]="product.image_url || 'assets/no-image.png'" alt="{{ product.product_name }}">
-      <h3>{{ product.product_name }}</h3>
-       Otros detalles del producto que quieras mostrar 
-    </div>
-  </div>
-</div>-->
-
-
-<!--
- WEB SCRAPPING INICIAL
-
-<div class="search-container">
-  <h1>Buscador de Productos</h1>
-  <p>Encuentra información nutricional de cualquier alimento</p>
-  
-  <div class="search-bar">
-    <input [(ngModel)]="query" placeholder="Buscar productos (ej: arroz, leche, galletas)..." 
-           (keyup.enter)="search()"/>
-    <button (click)="search()">Buscar</button>
-  </div>
-  
-  <div *ngIf="loading" class="loading">
-    <p>Buscando productos...</p>
-  </div>
-
-  <div *ngIf="!loading && products.length > 0" class="results">
-    <h2 *ngIf="query">Resultados para "{{ query }}"</h2>
-    <h2 *ngIf="!query">Productos populares</h2>
-    
-    <div class="products-grid">
-      <div *ngFor="let product of products" class="product-card">
-        <img [src]="product.image_url" alt="No se ha podido cargar la foto">
-        <h3>{{ product.product_name || 'Producto sin nombre' }}</h3>
-        // Añadimos el precio aquí
-        <p class="product-price" *ngIf="product.price">{{ product.price }}</p>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="!loading && products.length === 0 && query" class="no-results">
-    <p>No se encontraron productos para "{{ query }}".</p>
-    <button (click)="search('')">Ver productos populares</button>
-  </div>
-</div>
--->
-
 <div class="main-container">
   <div class="search-container">
     <div class="header-section">
@@ -78,6 +13,103 @@
         <i class="fa fa-search"></i> Buscar
       </button>
     </div>
+
+    <!-- Nueva sección de filtros -->
+    <div class="filters-container">
+      <button class="filter-toggle" (click)="toggleFilters()">
+        <i class="fa fa-filter"></i> 
+        {{ showFilters ? 'Ocultar filtros' : 'Mostrar filtros' }}
+      </button>
+
+      <div class="filters-panel" *ngIf="showFilters">
+        <h3>Filtros</h3>
+        
+        <!-- Filtro por categoría -->
+        <div class="filter-group">
+          <label>Categoría</label>
+          <select [(ngModel)]="filters.category" (change)="applyFilters()">
+            <option value="">Todas las categorías</option>
+            <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+          </select>
+        </div>
+        
+        <!-- Filtro por Nutriscore -->
+        <div class="filter-group">
+          <label>Nutriscore</label>
+          <div class="nutriscore-filter">
+            <div *ngFor="let score of nutriscores" 
+                 class="nutriscore-option"
+                 [class.selected]="filters.nutriscoreGrade === score"
+                 (click)="filters.nutriscoreGrade = score; applyFilters()">
+              {{ score.toUpperCase() }}
+            </div>
+            <div class="nutriscore-option clear-option"
+                 (click)="filters.nutriscoreGrade = ''; applyFilters()">
+              Todos
+            </div>
+          </div>
+        </div>
+        
+        <!-- Filtro por rango de precio -->
+        <div class="filter-group">
+          <label>Rango de precio</label>
+          <div class="price-range">
+            <input type="number" 
+                   [(ngModel)]="filters.minPrice" 
+                   placeholder="Min" 
+                   (change)="applyFilters()">
+            <span>-</span>
+            <input type="number" 
+                   [(ngModel)]="filters.maxPrice" 
+                   placeholder="Max" 
+                   (change)="applyFilters()">
+            <span>€</span>
+          </div>
+        </div>
+        
+        <!-- Filtro por información nutricional -->
+        <div class="filter-group">
+          <label>Información nutricional (por 100g)</label>
+          
+          <div class="nutrient-filter">
+            <label>Calorías max.</label>
+            <input type="number" 
+                   [(ngModel)]="filters.maxCalories" 
+                   placeholder="kcal" 
+                   (change)="applyFilters()">
+          </div>
+          
+          <div class="nutrient-filter">
+            <label>Grasas max.</label>
+            <input type="number" 
+                   [(ngModel)]="filters.maxFat" 
+                   placeholder="g" 
+                   (change)="applyFilters()">
+          </div>
+          
+          <div class="nutrient-filter">
+            <label>Azúcares max.</label>
+            <input type="number" 
+                   [(ngModel)]="filters.maxSugars" 
+                   placeholder="g" 
+                   (change)="applyFilters()">
+          </div>
+          
+          <div class="nutrient-filter">
+            <label>Proteínas min.</label>
+            <input type="number" 
+                   [(ngModel)]="filters.minProteins" 
+                   placeholder="g" 
+                   (change)="applyFilters()">
+          </div>
+        </div>
+        
+        <!-- Botón para limpiar todos los filtros -->
+        <button class="clear-filters-btn" (click)="clearFilters()">
+          Limpiar filtros
+        </button>
+      </div>
+    </div>
   </div>
   
   <div *ngIf="loading" class="loading-container">
@@ -85,14 +117,15 @@
     <p>Buscando productos...</p>
   </div>
 
-  <div *ngIf="!loading && products.length > 0" class="results-container">
+  <div *ngIf="!loading && filteredProducts.length > 0" class="results-container">
     <h2 class="results-title">
       <span *ngIf="query">Resultados para "{{ query }}"</span>
       <span *ngIf="!query">Productos populares</span>
+      <span *ngIf="hasActiveFilters()" class="filter-badge">Filtros activos</span>
     </h2>
     
     <div class="products-grid">
-      <div *ngFor="let product of products" class="product-card">
+      <div *ngFor="let product of filteredProducts" class="product-card">
         <div class="product-image-container">
           <img [src]="product.image_url || 'assets/no-image.png'" 
                onerror="this.src='assets/no-image.png'"
@@ -132,11 +165,11 @@
     </div>
   </div>
 
-  <div *ngIf="!loading && products.length === 0 && query" class="no-results">
+  <div *ngIf="!loading && filteredProducts.length === 0" class="no-results">
     <div class="no-results-content">
       <i class="fa fa-search" style="font-size: 3rem; opacity: 0.3;"></i>
-      <p>No se encontraron productos para "{{ query }}".</p>
-      <button (click)="search('')" class="secondary-button">Ver productos populares</button>
+      <p>No se encontraron productos para "{{ query }}"{{ hasActiveFilters() ? ' con los filtros seleccionados' : '' }}.</p>
+      <button (click)="clearFilters(); search('')" class="secondary-button">Ver productos populares</button>
     </div>
   </div>
 </div>

@@ -1,119 +1,332 @@
-/* Importar fuentes */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-/* Estilos generales */
-:host {
-  display: block;
-  font-family: 'Poppins', sans-serif;
-  color: #333;
-  background-color: #f9f9f9;
-}
-
+/* Contenedor principal */
 .main-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Encabezado y barra de búsqueda */
+/* Cabecera y barra de búsqueda */
 .search-container {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, #1e5631, #66bb6a);
+  box-shadow: 0 10px 30px rgba(102, 187, 106, 0.2);
+  padding: 3rem 2.5rem;
   text-align: center;
-  margin-bottom: 2.5rem;
-  background: linear-gradient(135deg, #43a047, #66bb6a);
-  padding: 3rem 2rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  color: white;
+}
+
+.header-section {
+  margin-bottom: 2rem;
 }
 
 .header-section h1 {
-  font-size: 2.8rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: white;
+  margin: 0;
   letter-spacing: -0.5px;
-  animation: fadeIn 0.8s ease-in-out;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.8s ease, slideUp 0.8s ease;
 }
 
 .subtitle {
-  font-size: 1.2rem;
-  opacity: 0.9;
-  margin-bottom: 2rem;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 0.8rem;
   font-weight: 300;
+  animation: fadeIn 1s ease, slideUp 1s ease;
 }
 
+/* Barra de búsqueda mejorada */
 .search-bar {
   display: flex;
   max-width: 700px;
   margin: 0 auto;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border-radius: 50px;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1.2s ease, slideUp 1.2s ease;
 }
 
 .search-bar:focus-within {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
 }
 
 .search-bar input {
   flex: 1;
   border: none;
-  padding: 1.2rem 1.5rem;
-  font-size: 1rem;
+  padding: 1.4rem 1.8rem;
+  font-size: 1.1rem;
   outline: none;
-  border-radius: 50px 0 0 50px;
+  color: #333;
+  font-family: inherit;
+}
+
+.search-bar input::placeholder {
+  color: #aaa;
+  transition: color 0.3s;
+}
+
+.search-bar input:focus::placeholder {
+  color: #ddd;
 }
 
 .search-bar button {
-  background-color: #ff9800;
+  background: linear-gradient(to right, #ff9800, #f57c00);
   color: white;
   border: none;
-  padding: 0 2rem;
-  font-size: 1rem;
-  font-weight: 500;
+  padding: 0 2.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .search-bar button:hover {
-  background-color: #f57c00;
+  background: linear-gradient(to right, #f57c00, #ef6c00);
 }
 
-/* Sección de carga */
-.loading-container {
-  display: flex;
-  flex-direction: column;
+.search-bar button i {
+  font-size: 1.2rem;
+}
+
+/* Panel de filtros mejorado */
+.filters-container {
+  margin: 2.5rem auto;
+  max-width: 900px;
+  animation: fadeIn 1.4s ease;
+}
+
+.filter-toggle {
+  background-color: white;
+  border: 2px solid #43a047;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #43a047;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  height: 200px;
+  gap: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
-.loading-spinner {
+.filter-toggle:hover {
+  background-color: #43a047;
+  color: white;
+}
+
+.filter-toggle i {
+  transition: transform 0.3s;
+}
+
+.filter-toggle:hover i {
+  transform: rotate(180deg);
+}
+
+/* Panel de filtros refinado */
+.filters-panel {
+  background-color: white;
+  border-radius: 16px;
+  margin-top: 1.5rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.3s ease-out;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2.5rem;
+}
+
+.filters-panel h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  color: #333;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 1rem;
+  grid-column: 1 / -1;
+}
+
+.filters-panel h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
   width: 50px;
-  height: 50px;
-  border: 5px solid rgba(67, 160, 71, 0.2);
-  border-top: 5px solid #43a047;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+  background-color: #43a047;
+  border-radius: 3px;
+}
+
+.filter-group {
+  margin-bottom: 2rem;
+}
+
+.filter-group:last-child {
   margin-bottom: 1rem;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.filter-group label {
+  display: block;
+  margin-bottom: 0.7rem;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #333;
 }
 
-/* Resultados y grid de productos */
+.filter-group select,
+.filter-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  color: #333;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+  border-color: #43a047;
+  box-shadow: 0 0 0 3px rgba(67, 160, 71, 0.2);
+  outline: none;
+}
+
+/* Mejorado filtro de rango de precios */
+.price-range {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.price-range input {
+  flex: 1;
+  max-width: 120px;
+}
+
+.price-range span {
+  color: #555;
+  font-weight: 500;
+}
+
+/* Mejorado filtro de Nutriscore */
+.nutriscore-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.nutriscore-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 3px solid transparent;
+}
+
+.nutriscore-option:nth-child(1) { background-color: #038141; }
+.nutriscore-option:nth-child(2) { background-color: #85bb2f; }
+.nutriscore-option:nth-child(3) { background-color: #fecb02; color: #333; }
+.nutriscore-option:nth-child(4) { background-color: #ee8100; }
+.nutriscore-option:nth-child(5) { background-color: #e63e11; }
+
+.nutriscore-option:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.nutriscore-option.selected {
+  transform: scale(1.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border: 3px solid white;
+}
+
+.nutriscore-option.clear-option {
+  background-color: #f5f5f5;
+  color: #555;
+  width: auto;
+  height: 45px;
+  border-radius: 23px;
+  padding: 0 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Mejorado filtro de nutrientes */
+.nutrient-filter {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.nutrient-filter label {
+  width: 140px;
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+.nutrient-filter input {
+  flex: 1;
+  max-width: 180px;
+}
+
+/* Botón para limpiar filtros */
+.clear-filters-btn {
+  grid-column: 1 / -1;
+  width: 200px;
+  margin: 1.5rem auto 0;
+  background-color: white;
+  border: 2px solid #43a047;
+  color: #43a047;
+  font-weight: 600;
+  padding: 12px 0;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1rem;
+}
+
+.clear-filters-btn:hover {
+  background-color: #43a047;
+  color: white;
+  box-shadow: 0 5px 15px rgba(67, 160, 71, 0.3);
+}
+
+/* Sección de resultados */
 .results-container {
-  animation: fadeIn 0.5s ease-in-out;
+  animation: fadeScale 0.5s ease-out;
+  padding-top: 1rem;
 }
 
 .results-title {
   font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
   color: #333;
   position: relative;
   display: inline-block;
@@ -123,199 +336,357 @@
   content: '';
   position: absolute;
   left: 0;
-  bottom: -8px;
-  height: 3px;
-  width: 60px;
+  bottom: -10px;
+  height: 4px;
+  width: 70px;
   background-color: #43a047;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
+.filter-badge {
+  display: inline-block;
+  background-color: #43a047;
+  color: white;
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin-left: 12px;
+  vertical-align: middle;
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(67, 160, 71, 0.3);
+}
+
+/* Grid de productos mejorado */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
 }
 
+/* Tarjetas de productos mejoradas */
 .product-card {
   background-color: white;
-  border-radius: 12px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.12), 0 5px 15px rgba(0, 0, 0, 0.07);
 }
 
 .product-image-container {
-  height: 200px;
-  overflow: hidden;
   position: relative;
-  background-color: #f5f5f5;
+  height: 200px;
+  background-color: #f8f9fa;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.03) 0%, rgba(255,255,255,0) 50%);
+  pointer-events: none;
 }
 
 .product-image-container img {
-  width: 100%;
-  height: 100%;
+  max-height: 85%;
+  max-width: 85%;
   object-fit: contain;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
 .product-card:hover .product-image-container img {
-  transform: scale(1.05);
+  transform: scale(1.08);
+}
+
+.nutriscore-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 6px 10px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  color: white;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  z-index: 2;
+  text-transform: uppercase;
+}
+
+.nutriscore-a { 
+  background: linear-gradient(135deg, #038141, #05a755); 
+  box-shadow: 0 3px 8px rgba(3, 129, 65, 0.3);
+}
+.nutriscore-b { 
+  background: linear-gradient(135deg, #74ab1e, #85bb2f); 
+  box-shadow: 0 3px 8px rgba(133, 187, 47, 0.3);
+}
+.nutriscore-c { 
+  background: linear-gradient(135deg, #e3ba02, #fecb02); 
+  color: #333; 
+  box-shadow: 0 3px 8px rgba(254, 203, 2, 0.3);
+}
+.nutriscore-d { 
+  background: linear-gradient(135deg, #d77400, #ee8100); 
+  box-shadow: 0 3px 8px rgba(238, 129, 0, 0.3);
+}
+.nutriscore-e { 
+  background: linear-gradient(135deg, #cf3911, #e63e11); 
+  box-shadow: 0 3px 8px rgba(230, 62, 17, 0.3);
 }
 
 .product-info {
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
 }
 
 .product-info h3 {
   font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
   font-weight: 600;
-  color: #333;
+  color: #222;
   line-height: 1.4;
-  height: 3em;
-  overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color 0.3s;
 }
 
-.product-price {
-  font-size: 1.2rem;
-  font-weight: 700;
+.product-card:hover .product-info h3 {
   color: #43a047;
-  margin-top: 0.5rem;
-  display: flex;
-  align-items: center;
 }
 
-/* No resultados */
-.no-results {
-  display: flex;
-  justify-content: center;
-  padding: 4rem 0;
-}
-
-.no-results-content {
-  text-align: center;
-  max-width: 400px;
-}
-
-.no-results-content p {
-  margin: 1rem 0 2rem;
-  font-size: 1.1rem;
-  color: #666;
-}
-
-.secondary-button {
-  background-color: #e0e0e0;
-  color: #333;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.secondary-button:hover {
-  background-color: #d5d5d5;
-}
-
-/* Estilos para badges de Nutriscore */
-.nutriscore-badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 5px 8px;
-  border-radius: 4px;
-  font-weight: bold;
-  font-size: 0.8rem;
-  color: white;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  z-index: 2;
-}
-
-.nutriscore-a { background-color: #038141; }
-.nutriscore-b { background-color: #85bb2f; }
-.nutriscore-c { background-color: #fecb02; }
-.nutriscore-d { background-color: #ee8100; }
-.nutriscore-e { background-color: #e63e11; }
-.nutriscore-unknown { background-color: #777; }
-
-/* Estilo para información de marca */
 .product-brand {
   font-size: 0.9rem;
   color: #666;
-  margin: 0.2rem 0 0.5rem;
-}
-
-/* Badge para mostrar la fuente del precio */
-.price-source-badge {
-  font-size: 0.7rem;
-  background-color: #43a047;
-  color: white;
-  padding: 2px 6px;
-  border-radius: 4px;
-  margin-left: 8px;
-  vertical-align: middle;
-}
-
-/* Botón para ver información nutricional */
-.info-button {
-  margin-top: 0.8rem;
-  padding: 8px 12px;
-  background-color: #f0f0f0;
-  border: none;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
+  margin: 0 0 1rem;
   display: flex;
   align-items: center;
-  gap: 5px;
 }
 
-.info-button:hover {
-  background-color: #e0e0e0;
-  transform: translateY(-1px);
+.product-brand::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #43a047;
+  border-radius: 50%;
+  margin-right: 8px;
+  opacity: 0.7;
 }
 
-.info-button i {
+.product-price {
+  font-size: 1.35rem;
+  font-weight: 700;
   color: #43a047;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.price-source-badge {
+  font-size: 0.65rem;
+  background-color: #43a047;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 20px;
+  margin-left: 10px;
+  vertical-align: middle;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 5px rgba(67, 160, 71, 0.2);
+  opacity: 0.85;
 }
 
 .no-price-message {
-  color: #999;
+  color: #888;
   font-style: italic;
   font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.info-button {
+  margin-top: auto;
+  padding: 12px;
+  background-color: rgba(67, 160, 71, 0.08);
+  border: none;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #43a047;
+}
+
+.info-button:hover {
+  background-color: rgba(67, 160, 71, 0.15);
+  transform: translateY(-2px);
+}
+
+.info-button i {
+  font-size: 1rem;
+}
+
+/* Efecto vacío para productos */
+.products-grid:empty::after {
+  content: "No hay productos disponibles";
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  color: #777;
+  font-style: italic;
 }
 
 /* Animaciones */
 @keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeScale {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
   }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Estado de carga */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(67, 160, 71, 0.1);
+  border-radius: 50%;
+  border-top-color: #43a047;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+.loading-container p {
+  font-size: 1.1rem;
+  color: #555;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Mensaje de no resultados */
+.no-results {
+  display: flex;
+  justify-content: center;
+  padding: 5rem 0;
+}
+
+.no-results-content {
+  text-align: center;
+  max-width: 500px;
+  padding: 3rem;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.no-results-content i {
+  font-size: 4rem;
+  color: #e0e0e0;
+  margin-bottom: 1.5rem;
+}
+
+.no-results-content p {
+  margin: 0 0 2rem;
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.secondary-button {
+  background-color: #43a047;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 4px 10px rgba(67, 160, 71, 0.3);
+}
+
+.secondary-button:hover {
+  background-color: #388e3c;
+}
+
+/* Ajustes responsive */
+@media (max-width: 992px) {
   .main-container {
-    padding: 1rem;
+    padding: 1.5rem;
   }
   
   .search-container {
-    padding: 2rem 1rem;
+    padding: 2.5rem 2rem;
+  }
+  
+  .header-section h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    padding: 2rem 1.5rem;
   }
   
   .header-section h1 {
@@ -323,23 +694,81 @@
   }
   
   .subtitle {
-    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .search-bar {
+    flex-direction: column;
+    border-radius: 16px;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    border-radius: 16px 16px 0 0;
+    padding: 1.2rem 1.5rem;
+  }
+  
+  .search-bar button {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0 0 16px 16px;
+    justify-content: center;
+  }
+  
+  .filters-panel {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .price-range {
+    flex-wrap: wrap;
+  }
+  
+  .price-range input {
+    max-width: none;
   }
   
   .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.5rem;
   }
   
-  .product-image-container {
-    height: 150px;
+  .nutrient-filter {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
   }
   
-  .product-info {
-    padding: 1rem;
+  .nutrient-filter label {
+    width: 100%;
+    margin-bottom: 0.5rem;
   }
   
-  .product-info h3 {
+  .nutrient-filter input {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-section h1 {
+    font-size: 1.8rem;
+  }
+  
+  .subtitle {
     font-size: 1rem;
+  }
+  
+  .results-title {
+    font-size: 1.5rem;
+  }
+  
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .nutriscore-filter {
+    justify-content: center;
   }
 }

@@ -23,6 +23,7 @@ public class ProductService {
             .queryParam("search_terms", query)
             .queryParam("json", "true")
             .queryParam("page_size", "24")
+            .queryParam("fields", "product_name,image_url,price,nutriments,nutrition_grades,nutriscore_grade,brands,quantity,ingredients_text,categories,category_tags")
             .toUriString();
             
         Map<String, Object> response;
@@ -50,6 +51,10 @@ public class ProductService {
             product.setBrands((String) p.get("brands"));
             product.setQuantity((String) p.get("quantity"));
             
+            // Categorías
+            product.setCategories((String) p.get("categories"));
+            product.setCategoryTags((List<String>) p.get("category_tags"));
+            
             // Nutrientes (si están disponibles)
             if (p.containsKey("nutriments")) {
                 product.setNutriments((Map<String, Object>) p.get("nutriments"));
@@ -61,8 +66,6 @@ public class ProductService {
         return productsList;
     }
 }
-
-
 
 //Contiene la lógica de negocio para buscar productos. 
 //Usa restTemplate para hacer peticiones HTTP a la API de Open Food Facts.

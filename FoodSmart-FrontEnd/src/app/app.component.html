@@ -1,5 +1,4 @@
-
-<header *ngIf="authService.isAuthenticated()" class="app-header">
+<header *ngIf="isLoggedIn()" class="app-header">
   <div class="header-container">
     <div class="logo">
       <a routerLink="/products">
@@ -11,7 +10,7 @@
     <nav class="main-nav">
       <ul>
         <li><a routerLink="/products" routerLinkActive="active">Productos</a></li>
-        <li><a routerLink="/favorites" routerLinkActive="active">Favoritos</a></li>
+        <!-- Opción de Favoritos eliminada -->
       </ul>
     </nav>
     
@@ -22,11 +21,11 @@
   </div>
 </header>
 
-<main [ngClass]="{'with-header': authService.isAuthenticated()}">
+<main [ngClass]="{'with-header': isLoggedIn()}">
   <router-outlet></router-outlet>
 </main>
 
-<footer *ngIf="authService.isAuthenticated()" class="app-footer">
+<footer *ngIf="isLoggedIn()" class="app-footer">
   <div class="footer-container">
     <p>© 2025 FoodSmart - Tu comparador de productos de confianza</p>
   </div>

@@ -2,6 +2,7 @@ package com.FoodSmart.FoodSmart_Backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -34,6 +35,13 @@ public class Products {
     @JsonProperty("nutriments")
     private Map<String, Object> nutriments;
     
+    // Campos de categorías
+    @JsonProperty("categories")
+    private String categories;
+    
+    @JsonProperty("category_tags")
+    private List<String> categoryTags;
+    
     // Campos de integración
     @JsonProperty("source")
     private String source;
@@ -41,9 +49,10 @@ public class Products {
     @JsonProperty("match_confidence")
     private Double matchConfidence;
 
-    // Constructores
+    // Constructor vacío
     public Products() {}
     
+    // Constructores con parámetros
     public Products(String productName, String imageUrl, String price) {
         this.product_name = productName;
         this.image_url = imageUrl;
@@ -68,13 +77,6 @@ public class Products {
     public String getPrice() { return price; }
     public void setPrice(String price) { this.price = price; }
     
-    public String getSource() { return source; }
-    public void setSource(String source) { this.source = source; }
-    
-    public Double getMatchConfidence() { return matchConfidence; }
-    public void setMatchConfidence(Double matchConfidence) { this.matchConfidence = matchConfidence; }
-    
-    // Getters y setters para información nutricional
     public String getNutriscoreGrade() { return nutriscoreGrade; }
     public void setNutriscoreGrade(String nutriscoreGrade) { this.nutriscoreGrade = nutriscoreGrade; }
     
@@ -89,8 +91,19 @@ public class Products {
     
     public Map<String, Object> getNutriments() { return nutriments; }
     public void setNutriments(Map<String, Object> nutriments) { this.nutriments = nutriments; }
+    
+    public String getCategories() { return categories; }
+    public void setCategories(String categories) { this.categories = categories; }
+    
+    public List<String> getCategoryTags() { return categoryTags; }
+    public void setCategoryTags(List<String> categoryTags) { this.categoryTags = categoryTags; }
+    
+    public String getSource() { return source; }
+    public void setSource(String source) { this.source = source; }
+    
+    public Double getMatchConfidence() { return matchConfidence; }
+    public void setMatchConfidence(Double matchConfidence) { this.matchConfidence = matchConfidence; }
 }
-
 //Define la estructura de datos que se maneja y devuelve al frontend. 
 //JsonIgnoreProperties se usa para ignorar campos adicionales en el JSON recibido. 
 //JsonProperty mapea los nombres de campos en formato snake_case del JSON a las propiedades Java
