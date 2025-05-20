@@ -24,15 +24,6 @@
       <div class="filters-panel" *ngIf="showFilters">
         <h3>Filtros</h3>
         
-        <!-- Filtro por categoría -->
-        <div class="filter-group">
-          <label>Categoría</label>
-          <select [(ngModel)]="filters.category" (change)="applyFilters()">
-            <option value="">Todas las categorías</option>
-            <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
-          </select>
-        </div>
-        
         <!-- Filtro por Nutriscore -->
         <div class="filter-group">
           <label>Nutriscore</label>

@@ -18,16 +18,9 @@ export class ProductsComponent implements OnInit {
   showFilters = false;
   selectedProduct: any = null;
   
-  // Datos para los filtros
-  categories: string[] = [
-    'Lácteos', 'Carnes', 'Pescados', 'Frutas', 'Verduras', 
-    'Cereales', 'Legumbres', 'Bebidas', 'Snacks', 'Dulces'
-  ];
-  
   nutriscores: string[] = ['a', 'b', 'c', 'd', 'e'];
   
   filters = {
-    category: '',
     nutriscoreGrade: '',
     minPrice: null as number | null,
     maxPrice: null as number | null,
@@ -181,12 +174,7 @@ export class ProductsComponent implements OnInit {
    */
   applyFilters(): void {
     this.filteredProducts = this.products.filter(product => {
-      // Filtrar por categoría
-      if (this.filters.category && 
-          (!product.categories || !product.categories.toLowerCase().includes(this.filters.category.toLowerCase()))) {
-        return false;
-      }
-      
+    
       // Filtrar por nutriscore
       if (this.filters.nutriscoreGrade && 
           product.nutriscoreGrade !== this.filters.nutriscoreGrade) {
@@ -271,7 +259,6 @@ export class ProductsComponent implements OnInit {
    */
   clearFilters(): void {
     this.filters = {
-      category: '',
       nutriscoreGrade: '',
       minPrice: null,
       maxPrice: null,
@@ -289,7 +276,6 @@ export class ProductsComponent implements OnInit {
    */
   hasActiveFilters(): boolean {
     return !!(
-      this.filters.category ||
       this.filters.nutriscoreGrade ||
       this.filters.minPrice !== null ||
       this.filters.maxPrice !== null ||
