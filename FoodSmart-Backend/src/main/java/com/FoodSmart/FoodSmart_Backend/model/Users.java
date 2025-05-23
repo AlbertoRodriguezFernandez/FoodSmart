@@ -6,12 +6,12 @@ package com.FoodSmart.FoodSmart_Backend.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users") // Asegúrate de que coincide con el nombre en MySQL
+@Table(name = "users") //Coincide con el nombre en MySQL
 public class Users {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Puedes usar otra clave primaria si es necesario
+    private Long id; 
     private String name;
     private String mail;
     private String password;

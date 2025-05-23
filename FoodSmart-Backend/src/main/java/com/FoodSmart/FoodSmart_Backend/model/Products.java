@@ -5,12 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true) //Ignorar campos desconocidos en el JSON
 public class Products {
 
     private String id;
 
-    @JsonProperty("price")
+    @JsonProperty("price") //Para mapear el campo "price" del JSON a la propiedad "price" de la clase
     private String price;
 
     @JsonProperty("product_name")

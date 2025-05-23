@@ -14,10 +14,10 @@ import java.util.logging.Logger;
 public class ProductService {
 
     private static final Logger logger = Logger.getLogger(ProductService.class.getName());
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate = new RestTemplate(); //Para peticiones HTTP
 
     public List<Products> searchProducts(String query) {
-        // Construir URL con más parámetros para obtener datos más completos
+        // Construir URL con más parámetros para consultar la API de Open Food Facts
         String url = UriComponentsBuilder
             .fromUriString("https://world.openfoodfacts.org/cgi/search.pl")
             .queryParam("search_terms", query)
@@ -50,10 +50,6 @@ public class ProductService {
             product.setIngredientsText((String) p.get("ingredients_text"));
             product.setBrands((String) p.get("brands"));
             product.setQuantity((String) p.get("quantity"));
-            
-            // Categorías
-            product.setCategories((String) p.get("categories"));
-            product.setCategoryTags((List<String>) p.get("category_tags"));
             
             // Nutrientes (si están disponibles)
             if (p.containsKey("nutriments")) {
